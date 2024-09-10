@@ -1,14 +1,15 @@
 import torch
 from torch import nn
 from huggingface_hub import PyTorchModelHubMixin
-from SeqCLR_RenaissanceSpanish.ResNet import ResNet18, ResNet34, ResNet50
+# from Model.ResNet import ResNet18, ResNet34, ResNet50
+from Model import ResNet
 
 
 class Encoder(nn.Module, PyTorchModelHubMixin):
     def __init__(self):
         super(Encoder, self).__init__()
         # self.resnet = ResNet18()
-        self.resnet = ResNet50()
+        self.resnet = ResNet.ResNet50()
         self.lstm = nn.LSTM(input_size=512, hidden_size=256, num_layers=2, batch_first=True, bidirectional=True)
 
     def forward(self, x):
